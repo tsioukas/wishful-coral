@@ -1,0 +1,3 @@
+sudo netstat -ltnp
+kill -9 <pid>
+killall -v python3

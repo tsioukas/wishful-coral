@@ -1,0 +1,38 @@
+#!/bin/bash 
+R='\033[0;31m'
+G='\033[0;32m'
+N='\033[0m' # No Color
+
+echo -e "${R}INSTALLING WISHFUL CODE${N}"
+mkdir wishful
+cd wishful
+sudo apt-get -y install -y wget git python python-virtualenv python-dev python3-dev python3-pip 
+sudo pip3 install --force-reinstall --upgrade pip 
+git config --global user.name "georgevio" 
+git config --global user.email "georgevio@gmail.com" 
+wget https://storage.googleapis.com/git-repo-downloads/repo 
+chmod a+x ./repo 
+./repo init -u https://github.com/wishful-project/manifests.git 
+./repo init -m user.xml 
+./repo sync 
+./repo start master --all 
+virtualenv -p /usr/bin/python3 ./dev 
+source ./dev/bin/activate 
+cd controller
+git checkout dev_iminds 
+cd ..
+cd examples
+git checkout dev_iminds 
+cd ..
+cd upis
+git checkout dev_iminds 
+cd ..
+pip3 install -U -r ./.repo/manifests/requirements.txt 
+
+echo ""
+echo -e "${G}Change your PATH to include msp430-gcc, add to .bashrc:${N}"
+echo -e "${G}export PATH=/opt/msp430-47-expr/bin/:$PATH${N}"
+echo ""
+echo -e "${G}Update the JAVA_HOME environment variable - add to .bashrc:${N}"
+echo -e "${G}export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-i386${N}"
+

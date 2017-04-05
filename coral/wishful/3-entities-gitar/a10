@@ -1,0 +1,2 @@
+#./changeYamlName
+./agent1.py --quiet --config ./agent10_config.yaml

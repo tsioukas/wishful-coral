@@ -1,0 +1,22 @@
+How to create a new externally changed variable in rpl-conf.h
+
+trying to change the of0
+1. In rpl-conf.h, add: extern uint8_t rpl_conf_of_ocp
+for the moment they are: &rpl_of0, &rpl_mrhof
+the default is this: #define RPL_OF_OCP RPL_OCP_MRHOF
+
+2. add in rpl-control.c
+like the following:
+
+uint8_t rpl_dio_interval_doublings = RPL_DIO_INTERVAL_DOUBLINGS;
+
+get_rpl_dio_interval_doublings(param_t* self)
+	return &rpl_dio_interval_doublings;
+	
+set_rpl_dio_interval_doublings(param_t* self, void* new_value, const uint8_t new_value_len)
+memcpy(&rpl_dio_interval_doublings, new_value, new_value_len);
+
+PARAMETER_UINT8(p_rpl_dio_interval_doublings, 100, get_rpl_dio_interval_doublings, set_rpl_dio_interval_doublings);
+
+param_repo_add_parameter(&p_rpl_dio_interval_doublings);
+

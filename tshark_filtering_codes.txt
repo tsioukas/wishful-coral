@@ -1,0 +1,20 @@
+ack packets
+wpan.frame_type == 0x2
+
+DIO
+ipv6.code == 1
+
+DAO
+ipv6.code == 2
+
+DIS
+ipv6.code == 0
+
+udp packets  --> data messages (NOT control)
+udp (just this...)
+
+DIO+DAO+DIS (All control messages)
+icmpv6 (just this)
+
+Time filtering (60 min of simulation)
+frame.time_relative < 3594

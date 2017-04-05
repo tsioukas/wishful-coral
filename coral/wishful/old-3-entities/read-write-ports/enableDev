@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd ../wishful/dev/bin/ 
+./run_activate

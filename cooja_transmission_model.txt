@@ -1,0 +1,14 @@
+from the sender's point of view. the tx range is the range in which the
+transmitted packet can be received correctly by any node within this range.
+while the interference range, is the range in which the transmission can be
+heard but the transmitted packet cannot be received correctly. outside of
+these two ranges, the packet can not be heard.
+
+tx and rx ratios are just random variables that are added to the sending or
+reception of a packet to allow the simulation of random errors in tx or rx
+respectively.
+
+a collision will be sensed if a node tries to transmit while it lies in the
+tx or int range of a node that is sending at the same time.
+if you are using csma, the packet will be retransmitted after a random
+back-off time. if not, then the packet will be dropped.

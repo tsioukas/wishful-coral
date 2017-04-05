@@ -1,0 +1,5 @@
+#!/bin/bash
+ln -s /dev/pts/34 /dev/rm090-1
+ln -s /dev/pts/35 /dev/rm090-2
+ln -s /dev/pts/36 /dev/rm090-3
+ln -s /dev/pts/37 /dev/rm090-4

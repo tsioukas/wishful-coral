@@ -1,0 +1,13 @@
+# WiSHFUL Controller's config file ALTERED WITH REAL IP
+
+controller:
+    name: "CORAL-GC"
+    info: "WiSHFUL Controller"
+    dl: "tcp://127.0.0.1:8990"
+    ul: "tcp://127.0.0.1:8989"
+
+modules:
+    discovery:
+        module : wishful_module_discovery_pyre
+        class_name : PyreDiscoveryControllerModule
+        kwargs: {"iface":"ens33", "groupName":"wishful_coral", "downlink":"tcp://127.0.0.1:8990", "uplink":"tcp://127.0.0.1:8989"} 

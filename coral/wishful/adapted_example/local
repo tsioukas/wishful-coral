@@ -1,0 +1,1 @@
+python lc.py -v --config config/localhost/control_program_local_config.yaml

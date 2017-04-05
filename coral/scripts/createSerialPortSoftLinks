@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "Do not forget to run it as root (or with sudo)"
+echo "Deleting old softlinks"
+rm -rf /dev/rm090*
+echo "Creating softlink creation script"
+./createSoftLinkCreationScript.py > softLinkCreationScript
+echo "Making script executable"
+chmod +x softLinkCreationScript
+echo "Creating softlinks"
+./softLinkCreationScript

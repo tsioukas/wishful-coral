@@ -1,0 +1,3 @@
+ln -s /home/user/wishful/dev/bin/activate /home/user/coral/act
+then being inside the coral dir, you can run:
+$: source act

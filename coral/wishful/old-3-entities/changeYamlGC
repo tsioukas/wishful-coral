@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#if ["$(hostname)" =="instant-contiki"]
+#		then ipAddr="$(ifconfig | grep -A 1 'eth0' | tail -1 | cut -d ':' -f 2 | cut -d ' ' -f 1)"
+#else
+#	ipAddr="127.0.0.1" #controller & agent in the same machine
+#echo Changing controller_config.yaml IP to: $ipAddr
+#fi
+
+ipAddr="$(ifconfig | grep -A 1 'eth0' | tail -1 | cut -d ':' -f 2 | cut -d ' ' -f 1)"
+tmpfile=`mktemp`
+#head -n0 controller_config.yaml >> $tmpfile
+echo "# WiSHFUL Controller's config file ALTERED WITH REAL IP"  >> $tmpfile
+echo >> $tmpfile
+echo "controller:" >> $tmpfile
+echo "    name: \"CORAL-GC\"" >> $tmpfile
+echo "    info: \"WiSHFUL Controller\"" >> $tmpfile
+echo "    dl: \"tcp://$ipAddr:8990\"" >> $tmpfile
+echo "    ul: \"tcp://$ipAddr:8989\"" >> $tmpfile
+echo "">> $tmpfile
+echo "modules:" >> $tmpfile
+echo "    discovery:">> $tmpfile
+echo "        module : wishful_module_discovery_pyre">> $tmpfile
+echo "        class_name : PyreDiscoveryControllerModule">> $tmpfile
+echo "        kwargs: {\"iface\":\"eth0\", \"groupName\":\"wishful_coral\", \"downlink\":\"tcp://$ipAddr:8990\", \"uplink\":\"tcp://$ipAddr:8989\"} ">> $tmpfile
+#tail -n +14 controller_config.yaml >> $tmpfile
+mv $tmpfile controller_config.yaml

@@ -1,0 +1,2 @@
+#!/bin/bash
+xterm -title "a3" -hold -e user/a3

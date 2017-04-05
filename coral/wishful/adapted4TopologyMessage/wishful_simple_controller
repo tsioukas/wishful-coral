@@ -1,0 +1,188 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+wishful_controller_simple.py: First implementation of WiSHFUL controller
+
+Usage:
+   wishful_controller_simple.py [options] [-q | -v]
+
+Options:
+   --logfile name      Name of the logfile
+   --config configFile Config file path
+
+Example:
+   ./wishful_simple_local_controller -v --config ./config.yaml 
+
+Other options:
+   -h, --help          show this help message and exit
+   -q, --quiet         print less text
+   -v, --verbose       print more text
+   --version           show version and exit
+"""
+
+import sys
+import datetime
+import logging
+import random
+import wishful_controller
+import gevent
+import yaml
+import wishful_upis as upis
+import threading
+import socket
+import json
+import time
+from threading import Thread
+
+from local_control_program import my_local_control_program # LC operations
+
+__author__ = "Piotr Gawlowicz, Mikolaj Chwalisz"
+__copyright__ = "Copyright (c) 2015, Technische Universität Berlin"
+__version__ = "0.1.0"
+__email__ = "{gawlowicz, chwalisz}@tkn.tu-berlin.de"
+
+
+log = logging.getLogger('wishful_agent.main')
+controller = wishful_controller.Controller()
+nodes = []
+
+
+
+#========= Java Socks Client ======================================
+
+# Server IP or name and port
+HOST = "localhost"
+PORT = 8999
+# Connect to the port on the server given by the caller if you wish
+server_address=(HOST, PORT)
+# Create a TCP/IP socket
+sockClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print ("connecting to " + HOST +":" + str(PORT) )
+
+con=False #starting with no connection
+while not con:
+	try:
+		sockClient.connect(server_address)
+		print("Connected to Java Socket Server...") 
+		print
+		con=True
+	except:# Do we need to GC to wait 4 ever for the Java Server?
+		print("No Java Server, waiting 5 secs...")
+		time.sleep(5)
+#======= it will wait here until Socks Server is found ============
+		
+		
+		
+		
+
+@controller.new_node_callback()
+def new_node(node):
+    nodes.append(node)
+    print("New node appeared:")
+    print(node)
+
+
+@controller.node_exit_callback()
+def node_exit(node, reason):
+    if node in nodes:
+        nodes.remove(node);
+    print("NodeExit : NodeID : {} Reason : {}".format(node.id, reason))
+
+
+@controller.set_default_callback()
+def default_callback(group, node, cmd, data):
+    print("DEFAULT CALLBACK : Group: {}, NodeName: {}, Cmd: {}, Returns: {}".format(group, node.name, cmd, data))
+
+
+def main(args):
+	log.debug(args)
+
+	config_file_path = args['--config']
+	config = None
+	with open(config_file_path, 'r') as f:
+		config = yaml.load(f)
+
+	controller.load_config(config)
+	controller.start()
+
+	#control loop
+	while True:
+		
+		if nodes:
+			print("\n")
+			print("Connected nodes", [str(node.name) for node in nodes])
+			#lcpDescriptor = controller.node(nodes[0]).hc.start_local_control_program(program=my_local_control_program)
+			lcpDescriptor = controller.node(nodes[0]).hc.start_local_control_program(program=callTD)
+			print("LC connected, ID: {}".format(lcpDescriptor.id))
+
+            #msgNum = 50 # just to keep on sending messages
+            #while msgNum:
+            #    CtrlMsg="TD"
+                #newChannel = random.randint(1, 30)
+                #print("{} Sending new channel to set: {}".format(datetime.datetime.now(), newChannel))
+                #lcpDescriptor.send({"new_channel":newChannel})
+            #    print("Sending msg: {}".format(CtrlMsg))
+            #    lcpDescriptor.send({"CtrlMsg":CtrlMsg})
+
+			while True:
+				current = sockClient.recv(1024) #waiting for the Socks Server to send something
+				if current:
+					socksMsg = current.decode('UTF-8')#get a msg from Socks Server
+					print ( 'Got msg from SocS. Sending "%s"' % socksMsg )
+					lcpDescriptor.send({"CtrlMsg":socksMsg})#send to LC
+					
+					msg = lcpDescriptor.recv(timeout=1)# receive from LC
+					if msg:
+						msg2send=str(msg)
+						print ("Got answer back from LC:"+msg2send)
+						sockClient.sendall(msg) # Send to Java Socks Server
+						print ("msg sent to Socks Server: " + msg)
+
+					break #loop at the beggining
+			#else:
+			#print ("{} Waiting for message".format(datetime.datetime.now()))
+			print ("Waiting for message")
+			gevent.sleep(5)
+
+			retVal = lcpDescriptor.close()
+			print("Local Control Progam ID: {} was {}".format(lcpDescriptor.id, retVal))
+
+		print ( "No node(s) showed up... waiting")
+		gevent.sleep(10)
+
+
+if __name__ == "__main__":
+    try:
+        from docopt import docopt
+    except:
+        print("""
+        Please install docopt using:
+            pip install docopt==0.6.1
+        For more refer to:
+        https://github.com/docopt/docopt
+        """)
+        raise
+
+    args = docopt(__doc__, version=__version__)
+
+    log_level = logging.INFO  # default
+    if args['--verbose']:
+        log_level = logging.DEBUG
+    elif args['--quiet']:
+        log_level = logging.ERROR
+
+    logfile = None
+    if args['--logfile']:
+        logfile = args['--logfile']
+
+    logging.basicConfig(filename=logfile, level=log_level,
+        format='%(asctime)s - %(name)s.%(funcName)s() - %(levelname)s - %(message)s')
+
+    try:
+        main(args)
+    except KeyboardInterrupt:
+        log.debug("Controller exits")
+    finally:
+        log.debug("Exit")
+        controller.stop()

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+hostName=$(hostname) 
+echo Changing agent_config.yaml name to: $hostName
+
+tmpfile=`mktemp`
+head -n3 agent_config.yaml > $tmpfile
+echo "  name: '$hostName'">> $tmpfile
+tail -n +5 agent_config.yaml >> $tmpfile
+mv $tmpfile agent_config.yaml
