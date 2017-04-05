@@ -2,6 +2,13 @@ Wishful adapted code for running experiments with UPIs
 This is an adapted version of the UPIs https://github.com/wishful-project 
 WiSHFUL project information: http://www.wishful-project.eu/ 
 
+![alt text](screenshots/arch.png "Basic Description of UPI usage")
+
+
+![alt text](screenshots/demo.png "Node Red front End")
+
+
+If you found the code useful, please cite the paper(s) produced.
 Find publications from this project, here:
 http://uomcoral.wikispaces.com/Publications
 
