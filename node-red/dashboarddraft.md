@@ -64,8 +64,7 @@ TODO : GET FROM FINAL
 
 TODO : GET FROM FINAL
 
-------------
-
+----------
 <a name="rpl" class="anchor" href="#rpl"></a>
 ## RPL - Routing protocol for Low-Power and Lossy Networks
 
@@ -89,7 +88,7 @@ The general format of JSON for all configuration options is this :
 - **NID** : Node ID as defined on Nodes panel.
 - **VAL** : The selected value of each option
 
-##### Nodes
+#### Nodes
 
 In panel nodes we define the target node of configuration properties. Possible values and their returns of node target are :
 
@@ -97,7 +96,7 @@ In panel nodes we define the target node of configuration properties. Possible v
 - **SINK** : Return 1
 - **Node** : Return the number on Node field
 
-##### RPL DIO Interval Doublings
+#### RPL DIO Interval Doublings
 
 ```json
 {"RTA":"RPL", "CMD": "IEEE802154_RPL_Doublings", "NID": 1, "VAL": 8}
@@ -106,7 +105,7 @@ In panel nodes we define the target node of configuration properties. Possible v
 - **CMD** : "IEEE802154_RPL_Doublings"
 - **VAL** : Range 8-13
 
-##### RPL DIO Interval Min
+#### RPL DIO Interval Min
 
 ```json
 {"RTA":"RPL", "CMD": "IEEE802154_RPL_Imin", "NID": 1, "VAL": 8}
@@ -116,7 +115,7 @@ In panel nodes we define the target node of configuration properties. Possible v
 - **VAL** : Range 8-13
 
 
-##### UDP send freq
+#### UDP send freq
 
 ```json
 {"RTA":"RPL", "CMD": "CORAL_send_interval", "NID": 1, "VAL": 1}
@@ -125,7 +124,7 @@ In panel nodes we define the target node of configuration properties. Possible v
 - **CMD** : "CORAL_send_interval"
 - **VAL** : Range 1-10
 
-##### Link Quality Estimation Algorithm
+#### Link Quality Estimation Algorithm
 
 ```json
 {"RTA":"RPL", "CMD": "LQEA", "NID": 1, "VAL": 1}
@@ -159,7 +158,7 @@ The general format of JSON for all configuration options is this :
 - **NID** : The Node ID of property
 - **VAL** : The current value of configuration property
 
-##### RPL DIO Interval Min
+#### RPL DIO Interval Min
 
 
 ```json
@@ -169,7 +168,7 @@ The general format of JSON for all configuration options is this :
 - **CMD** : "IEEE802154_RPL_Imin"
 
 
-##### RPL DIO Interval Doublings
+#### RPL DIO Interval Doublings
 
 ```json
 {"RTA":"RPL", "DTP":"CNF", "CMD":"IEEE802154_RPL_Doublings", "NID": 1, "VAL": 8}
@@ -177,7 +176,7 @@ The general format of JSON for all configuration options is this :
 
 - **CMD** : "IEEE802154_RPL_Doublings"
 
-##### UDP send freq
+#### UDP send freq
 
 ```json
 {"RTA":"RPL", "DTP":"CNF", "CMD":"CORAL_send_interval", "NID": 1, "VAL": 1}
@@ -185,7 +184,7 @@ The general format of JSON for all configuration options is this :
 
 - **CMD** : "CORAL_send_interval"
 
-##### Link Quality Estimation Algorithm
+#### Link Quality Estimation Algorithm
 
 ```json
 {"RTA":"RPL", "DTP":"CNF", "CMD":"LQEA", "NID": 1, "VAL": 1}
@@ -193,7 +192,7 @@ The general format of JSON for all configuration options is this :
 
 - **CMD** : "LQEA"
 
-##### Note
+#### Note
 
 > - If Node ID parameter is 1000 then all nodes receive the same value as was defined on Configuration Overview
 > - If we give in any parameter the value “null” then removes corresponding configuration from list
@@ -225,7 +224,7 @@ The general format of JSON for all chart data is :
  - **VAL** : The value of property
 - **TIME** : The timestamp of value in milliseconds
 
-##### Packet Delivery Ratio (PDR)
+#### Packet Delivery Ratio (PDR)
 
 ```json
 {"RTA":"RPL","DTP":"CHA","CMD":"CORAL_pdr_total_sink","NID":1, "VAL":0,"TIME":1483228800000}
@@ -235,7 +234,7 @@ The general format of JSON for all chart data is :
 -- "CORAL_pdr_total_sink"
 - **NID** : NodeID must be always 1
 
-##### Control Packets vs. Data Packets
+#### Control Packets vs. Data Packets
 
 ```json
 {"RTA":"RPL","DTP":"CHA","CMD":"CORAL_icmp_send_total_sink","TIME":1483228800000,"VAL":0}
@@ -245,16 +244,16 @@ The general format of JSON for all chart data is :
 -- "CORAL_icmp_send_total_sink" : Total Control Packets Sent
 -- "CORAL_udp_send_total_sink" : Total UDP Packets Sent
 
-##### Control Packets vs. Data Packets %
+#### Control Packets vs. Data Packets %
 
 ```json
-{"RTA":"RPL","DTP":"CHA","CMD":"CORAL_udp_vs_control”,"TIME":1483228800000,"VAL": 0}
+{"RTA":"RPL","DTP":"CHA","CMD":"CORAL_udp_vs_control","TIME":1483228800000,"VAL": 0}
 ```
 - **CMD** : Defines data property
 -- "CORAL_icmp_send_total_sink" : Total Control Packets Sent
 -- "CORAL_udp_send_total_sink" : Total UDP Packets Sent
 
-##### Node Jitter
+#### Node Jitter
 
 ```json
 {"RTA":"RPL", "DTP":"CHA","CMD": "jitter", "TIME": 1483228800000, "NID": 2, "VAL": 0 }
@@ -263,25 +262,25 @@ The general format of JSON for all chart data is :
 -- "CORAL_pdr_total_sink"
 - **NID** : Node ID
 
-##### Jitter Average
+#### Jitter Average
 
 ```json
-{"RTA":"RPL", "DTP":"CHA","CMD": "jitter", "TIME": 1483228800000, "NID": 1000, VAL: 0 }
+{"RTA":"RPL", "DTP":"CHA","CMD": "jitter", "TIME": 1483228800000, "NID": 1000, "VAL": 0 }
 ```
 - **CMD** : Defines data property
 -- "jitter"
 - **NID** : When NodeID is 1000, then defined the average value.
 
-##### Latency
+#### Latency
 
 ```json
-{"RTA":"RPL", CMD: "CORAL_latency", "TIME": 1483228800000, "NID": 1000, VAL: 0 }
+{"RTA":"RPL", "CMD": "CORAL_latency", "TIME": 1483228800000, "NID": 1000, "VAL": 0 }
 ```
 - **CMD** : Defines data property
 -- "CORAL_latency"
 - **NID** : Always 1000
 
-------------
+----------
 <a name="bcp" class="anchor" href="#bcp"></a>
 ## BCP - Backpressure routing protocol
 
@@ -305,7 +304,7 @@ The general format of JSON for all configuration options is this :
 - **NID** : Node ID as defined on Nodes panel.
 - **VAL** : The selected value of each option
 
-#### **Nodes**
+#### Nodes
 
 In panel nodes we define the target node of configuration properties. Possible values and their returns of node target are :
 
@@ -313,7 +312,7 @@ In panel nodes we define the target node of configuration properties. Possible v
 - **SINK** : Return 1
 - **Node** : Return the number on Node field
 
-##### **Weights**
+#### Weights
 
 ```json
 {"RTA":"BCP", "CMD": "WEIGHT", "NID": 0, "VAL": 0}
@@ -322,7 +321,7 @@ In panel nodes we define the target node of configuration properties. Possible v
 - **CMD** : "WEIGHT"
 - **VAL** : Range 0-50
 
-##### **Queue Limits**
+#### Queue Limits
 ```json
 {"RTA":"BCP", "CMD": "QUEUELIMIT", "NID": 0, "VAL": 0}
 ```
@@ -330,7 +329,7 @@ In panel nodes we define the target node of configuration properties. Possible v
 - **CMD** : "QUEUELIMIT"
 - **VAL** : Range 0-50
 
-##### **Data Packet send freq (sec)**
+#### Data Packet send freq (sec)
 
 ```json
 {"RTA":"BCP", "CMD": "DATAPACKETFREQ", "NID": 0, "VAL": 0}
@@ -362,28 +361,28 @@ The general format of JSON for all configuration options is this :
 - **VAL** : The current value of configuration property
 
 
-##### **Weights**
+#### Weights
 
 ```json
 {"RTA":"BCP", "DTP":"CNF", "CMD":"WEIGHT", "NID": 1, "VAL": 1}
 ```
 - **CMD** : "WEIGHT"
 
-##### **Queue Limits**
+#### Queue Limits
 
 ```json
 {"RTA":"BCP", "DTP":"CNF", "CMD":"QUEUELIMIT", "NID": 1, "VAL": 1}
 ```
 - **CMD** : "QUEUELIMIT"
 
-##### **Data Packet send freq (sec)**
+#### Data Packet send freq (sec)
 
 ```json
 {"RTA":"BCP", "DTP":"CNF", "CMD":"DATAPACKETFREQ", "NID": 1, "VAL": 1}
 ```
 - **CMD** : "QUEUELIMIT"
 
-##### **Note**
+#### Note
 
 > - If Node ID parameter is 1000 then all nodes receive the same value as was defined on Configuration Overview
 > - If we give in any parameter the value “null” then removes corresponding configuration from list
@@ -415,19 +414,16 @@ The general format of JSON for all chart data is :
 - **TIME** : The timestamp of value in milliseconds
 
 
-##### **Packets in Queues**
+#### Packets in Queues
 
 ```json
-{"RTA":"BCP","DTP":"CHA","CMD":"PACKETSQUEUES”,"NID":1,"VAL": 0}
+{"RTA":"BCP","DTP":"CHA","CMD":"PACKETSQUEUES","NID":1,"VAL": 0}
 ```
 
 - **CMD** : "PACKETSQUEUES"
 
-------------
 
-<a name="sdn" class="anchor" href="#sdn"></a>
-## SDN - Software Defined Wireless Sensor Network routing protocol
-
+----------
 <a name="sdn" class="anchor" href="#sdn"></a>
 ## SDN - Software Defined Wireless Sensor Network routing protocol
 
@@ -437,7 +433,7 @@ The general format of JSON for all chart data is :
 
 In this section we describe all the commands & configuration options from SDN Dashboard send to Controller.
 
-##### **Start & Update**
+#### Start & Update
 
 TODO : What it does
 
@@ -467,7 +463,7 @@ TODO : What it does
 -- 2 : ΕΤΧ
 -- 3 : JSI intelligent LQE algorithm
 
-##### **Clear Routes**
+#### Clear Routes
 
 TODO : What it does
 
@@ -477,7 +473,7 @@ TODO : What it does
 - **RTA** : The Routing Algorithm. Always "SDN" for this protocol.
 - **CMD** : Takes value of "ClearRoutes"
 
-##### **Save**
+#### Save
 
 TODO : What it does
 
@@ -488,7 +484,7 @@ TODO : What it does
 - **CMD** : Takes value of "ClearRoutes"
 - **FILE** : The value of Experiment Title field
 
-##### **Stop/Clear**
+#### Stop/Clear
 
 TODO : What it does
 
@@ -540,10 +536,10 @@ The general format of JSON for all chart data is :
 
 TODO : Change IN DASHBOARD/CONTROLLER "DTP" TO "CMD". SET "DTP" AS "CHA"
 
-##### **Topology Discovery time elapsed**
+#### Topology Discovery time elapsed
 
 ```json
-{"RTA":"SDN","DTP":"CHA","CMD":"TOPDISTE",TIME":1483228800000,"NODES": 0}
+{"RTA":"SDN","DTP":"CHA","CMD":"TOPDISTE","TIME":1483228800000,"NODES": 0}
 ```
 
 - **CMD** : "TOPDISTE"
@@ -551,10 +547,10 @@ TODO : Change IN DASHBOARD/CONTROLLER "DTP" TO "CMD". SET "DTP" AS "CHA"
 - **NODES** : Number of Nodes
 
 
-##### **Topology Discovery Control Packets**
+#### Topology Discovery Control Packets
 
 ```json
-{"RTA":"SDN","DTP":"CHA","CMD":"TOPDISCP",TIME":1483228800000,"SENT": 10,"RECV": 20,"TOTAL": 30}
+{"RTA":"SDN","DTP":"CHA","CMD":"TOPDISCP","TIME":1483228800000,"SENT": 10,"RECV": 20,"TOTAL": 30}
 
 ```
 
@@ -564,16 +560,17 @@ TODO : Change IN DASHBOARD/CONTROLLER "DTP" TO "CMD". SET "DTP" AS "CHA"
 - **SENT** :  Packets Received
 - **TOTAL** :  Total Packets
 
-##### **First Packet delivery**
+#### First Packet delivery
 
 ```json
-{"RTA":"SDN","DTP":"CHA","CMD":"FRPCKDL",TIME":1000,"NID": 1}
+{"RTA":"SDN","DTP":"CHA","CMD":"FRPCKDL","TIME":1000,"NID": 1}
 ```
 
 - **CMD** : "FRPCKDL"
 - **TIME** : Time in milliseconds
 - **NID** : Node ID
 
+----------
 <a name="commondata" class="anchor" href="#commondata"></a>
 ## Common Incomming Data
 
@@ -584,7 +581,7 @@ Network Setup and Monitoring Information are some common features on each protoc
 <a name="networksetup" class="anchor" href="#networksetup"></a>
 ### Network Setup
 
-##### Network Definition
+#### Network Definition
 
 This command changes the network information on dashboard.
 
@@ -599,7 +596,7 @@ This command changes the network information on dashboard.
 - **MOBILE** : The number of mobile nodes
 - **LINKS** : The number of links between nodes
 
-##### Reset Network
+#### Reset Network
 
 This command remove any network information on dashboard and set it on initial state.
 
@@ -607,7 +604,7 @@ This command remove any network information on dashboard and set it on initial s
 {"RTA":"RPL","DTP":"NET","NODES":0,"SINK":0,"STATIC":0,"MOBILE":0}
 ```
 
-##### Additional functions
+#### Additional functions
 
 It is possible to change only a part of the Network:
 
@@ -623,7 +620,7 @@ With these commands will set the time that elapsed on our experiment. This time 
 
 The are two types of calculation
 
-##### Base on the duration of the experiment
+#### Base on the duration of the experiment
 
 This command will set the current duration of the experiment. System will calculate the time that elapsed from that time and will display it on the panel.
 
@@ -635,7 +632,7 @@ This command will set the current duration of the experiment. System will calcul
 - **DTP** : Data Type
 - **DURATION** : The duration of implementation of experiment in milliseconds.
 
-##### Base on a specific unix timestamp
+#### Base on a specific unix timestamp
 
 ```json
 {"RTA":"RPL","DTP":"MON","STARTTIME":1483228800000}
@@ -645,7 +642,7 @@ This command will set the current duration of the experiment. System will calcul
 - **DTP** : Data Type
 - **STARTTIME** : The start of implementation of experiment in unix timestamp. e.g 148322880000 = Sun, 01 Jan 2017 00:00:00 GMT
 
-##### Additional functions
+#### Additional functions
 
 ```json
 {"RTA":"RPL","DTP":"MON","ACTION":"START"}
@@ -662,9 +659,7 @@ This command will set the current duration of the experiment. System will calcul
 - **DTP** : Data Type
 - **STOP** : In this case the timer does not present. With START condition, it continues with base the running value (it does not function as PAUSE)
 
-
-------------
-
+----------
 <a name="topvis" class="anchor" href="#topvis"></a>
 ## Topology Visualization
 
@@ -680,7 +675,7 @@ There are two kind of data that can send in this Node Red module
 
 Topology Visualization accepts the data in json format. This data stucture include information's about topology Nodes, Links and Flows.
 
-##### Data Structure
+#### Data Structure
 A general format of topology data structure can be this example :
 
 ```json
@@ -781,7 +776,7 @@ A general format of topology data structure can be this example :
 		- **source** : The source node id
 		- **target** : The target node id
 
-##### Flow Colors
+#### Flow Colors
 
 Below is the list of possible flow colors. These colors based on google material design palette.
 
@@ -800,7 +795,7 @@ There are some common options on each command.
 - **CMD** : The name of command
 - **NID** : Node ID as defined on Nodes panel.
 
-##### Discover Neighbors
+#### Discover Neighbors
 
 > TODO : DESCRIBE WHAT  IT DOES
 
@@ -809,7 +804,7 @@ There are some common options on each command.
 ```
 - **CMD** : Topology
 
-##### Send Message
+#### Send Message
 
 > TODO : DESCRIBE WHAT  IT DOES
 
@@ -937,7 +932,7 @@ There are some common options on each element type
 - **style** : An extra style code for the specific element
 
 
-##### Rectangles
+#### Rectangles
 
 Draws an rectangle in the map
 
@@ -964,7 +959,7 @@ Draws an rectangle in the map
 - **height** : The height of the rectangle
 - **label** : A text object in the middle of circle. As with rectangles, it's possible set font style and type of all elements with the same name using this selector in elements style "elementname-label".
 
-##### Lines
+#### Lines
 
 Draws a line in the map
 
@@ -989,7 +984,7 @@ Draws a line in the map
 - **x2** : The second point horizontal coordinate of line
 - **y2** : The second point vertical coordinate of line
 
-##### Circles
+#### Circles
 
 Draws a circle in the map
 
