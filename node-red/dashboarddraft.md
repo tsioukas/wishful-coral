@@ -71,9 +71,9 @@ TODO : GET FROM FINAL
 <a name="rplconfiguration" class="anchor" href="#rplconfiguration"></a>
 ### Configuration
 
-In this section we describe all the commands & configuration options from RPL Dashboard send to Controler.
+In this section we describe all the commands & configuration options from RPL Dashboard send to Controller.
 
-The general format of JSON for all configuration options is this :
+The general format of JSON for all configuration options is this:
 ```json
 {
     "RTA":"RPL",
@@ -90,7 +90,7 @@ The general format of JSON for all configuration options is this :
 
 #### Nodes
 
-In panel nodes we define the target node of configuration properties. Possible values and their returns of node target are :
+In panel nodes we define the target node of configuration properties. A a list of possible values and their returns of node target are:
 
 - **All** : Return 1000
 - **SINK** : Return 1
@@ -203,7 +203,7 @@ The general format of JSON for all configuration options is this :
 
 In this section we describe the incoming data for each chart on RPL Dashboard.
 
-The general format of JSON for all chart data is :
+The general format of JSON for all chart data is:
 
 ```json
 {
@@ -287,9 +287,9 @@ The general format of JSON for all chart data is :
 <a name="bcpconfiguration" class="anchor" href="#bcpconfiguration"></a>
 ### Configuration
 
-In this section we describe all the commands & configuration options from BCP Dashboard send to Controler.
+In this section we describe all the commands & configuration options from BCP Dashboard send to Controller.
 
-The general format of JSON for all configuration options is this :
+The general format of JSON for all configuration options is this:
 ```json
 {
     "RTA":"BCP",
@@ -306,7 +306,7 @@ The general format of JSON for all configuration options is this :
 
 #### Nodes
 
-In panel nodes we define the target node of configuration properties. Possible values and their returns of node target are :
+In panel nodes we define the target node of configuration properties. A a list of possible values and their returns of node target are:
 
 - **All** : Return 1000
 - **SINK** : Return 1
@@ -343,7 +343,7 @@ In panel nodes we define the target node of configuration properties. Possible v
 
 In this section we describe how to update the available information on Configuration Overview.
 
-The general format of JSON for all configuration options is this :
+The general format of JSON for all configuration options is this:
 ```json
 {
     "RTA":"BCP",
@@ -393,7 +393,7 @@ The general format of JSON for all configuration options is this :
 
 In this section we describe the incoming data for each chart on RPL Dashboard.
 
-The general format of JSON for all chart data is :
+The general format of JSON for all chart data is:
 
 ```json
 {
@@ -409,7 +409,7 @@ The general format of JSON for all chart data is :
 - **RTA** : The Routing Algorithm. Always "BCP" for this protocol.
 - **DTP** : Defines the target using a data type. Always "CHA" for charts.
 - **CMD** : Defines data property
-- **NID** : The Node ID of propertiy
+- **NID** : The Node ID of property
  - **VAL** : The value of property
 - **TIME** : The timestamp of value in milliseconds
 
@@ -529,7 +529,7 @@ The general format of JSON for all chart data is :
 - **RTA** : The Routing Algorithm. Always "SDN" for this protocol.
 - **DTP** : Defines the target using a data type. Always "CHA" for charts.
 - **CMD** : Defines data property
-- **NID** : The Node ID of propertiy
+- **NID** : The Node ID of property
  - **VAL** : The value of property
 - **TIME** : The timestamp of value in milliseconds
 
@@ -574,7 +574,7 @@ TODO : Change IN DASHBOARD/CONTROLLER "DTP" TO "CMD". SET "DTP" AS "CHA"
 <a name="commondata" class="anchor" href="#commondata"></a>
 ## Common Incomming Data
 
-Network Setup and Monitoring Information are some common features on each protocol. In this section will describe how controler send these informations to dashboard with incoming JSON command.
+Network Setup and Monitoring Information are some common features on each protocol. In this section will describe how controller send these information’s to dashboard with incoming JSON command.
 
 ------------
 
@@ -616,7 +616,7 @@ It is possible to change only a part of the Network:
 
 ### Monitoring Information
 
-With these commands will set the time that elapsed on our experiment. This time can be set only one time at the start of the session. Optionaly can periodicaly updated to calibrate the time.
+With these commands will set the time that elapsed on our experiment. This time can be set only one time at the start of the session. Optionally can periodically updated to calibrate the time.
 
 The are two types of calculation
 
@@ -640,7 +640,7 @@ This command will set the current duration of the experiment. System will calcul
 
 - **RTA** : Routing Algorithm. The values can be "RPL", "SDN" & "BCP"
 - **DTP** : Data Type
-- **STARTTIME** : The start of implementation of experiment in unix timestamp. e.g 148322880000 = Sun, 01 Jan 2017 00:00:00 GMT
+- **STARTTIME** : The start of implementation of experiment in Unix timestamp. e.g 148322880000 = Sun, 01 Jan 2017 00:00:00 GMT
 
 #### Additional functions
 
@@ -663,7 +663,7 @@ This command will set the current duration of the experiment. System will calcul
 <a name="topvis" class="anchor" href="#topvis"></a>
 ## Topology Visualization
 
-In this section we will describe the topology visuliation data structure, that used on SDN routing algorithm
+In this section we will describe the topology visualization  data structure, that used on SDN routing algorithm
 
 There are two kind of data that can send in this Node Red module
 
@@ -673,7 +673,7 @@ There are two kind of data that can send in this Node Red module
 <a name="topvisdata" class="anchor" href="#topvisdata"></a>
 ### Topology Data
 
-Topology Visualization accepts the data in json format. This data stucture include information's about topology Nodes, Links and Flows.
+Topology Visualization accepts the data in json format. This data structure  include information's about topology Nodes, Links and Flows.
 
 #### Data Structure
 A general format of topology data structure can be this example :
@@ -752,6 +752,7 @@ A general format of topology data structure can be this example :
     ]
 }
 ```
+
 - **RTA** : The Routing Algorithm. Available options are "RSI", "BCA", "SDN".
 - **DTP** : Defines the target using a data type. Always "TOP" for topology visualization.
 - **nodes** :  Array of nodes and their information. If there are no changes in node structure and data, it's not necessary to resend the node data. The array structure contains for each node these properties :
@@ -770,15 +771,15 @@ A general format of topology data structure can be this example :
 	- **source** : The source node id
 	- **target** : The target node id
 	- **data** : An array of link properties. These information's displayed as popup on mouse over. Key of property will used as label.
-- **flows** : This contains an array of the path of flows. This is an optional if there is no flows in the topology. Also you can send only the flows without nodes and links. To remove flows send an empty array.
-	- **color** : An optional property that defines the color of the flow. Below you can find color names and their id's. It's possible to set the number of the name of the color. If the color didn't defined then it will used an automatic color .
-	- **links** : An array of flow links.  It descibes each step of the full path between connected nodes
+- **flows** : This contains an array of the path of flows. This is an optional if there is no flows in the topology. In addition, you can send only the flows without nodes and links. To remove flows send an empty array.
+	- **color** : An optional property that defines the color of the flow. Below you can find color names and their id. It's possible to set the number of the name of the color. If the color didn't defined then it will used an automatic color .
+	- **links** : An array of flow links.  It describes each step of the full path between connected nodes
 		- **source** : The source node id
 		- **target** : The target node id
 
 #### Flow Colors
 
-Below is the list of possible flow colors. These colors based on google material design palette.
+Below is the list of possible flow colors. These colors based on Google material design palette.
 
 ```json
 {"1":"red","2":"pink","3":"purple","4":"deep-purple","5":"indigo","6":"blue","7":"light-blue","8":"cyan","9":"teal","10":"green","11":"light-green","12":"lime","13":"yellow","14":"amber","15":"orange","16":"deep-orange","17":"brown","18":"grey","19":"blue-grey"}
@@ -874,7 +875,7 @@ In this section we describe the data structure of the Map feature of Topology Vi
 - **RTA** : The Routing Algorithm.
 - **DTP** : Defines the target using a data type. Always "TOP" for topology visualization.
 - **CMD** : Defines the data structure action. For MAP JSON is setMap.
-- **topologyConfig** : A set of config options for Topology Visualization module.
+- **topologyConfig** : A set of configuration options for Topology Visualization module.
 	- **charge** : In automatic node position is the charge between nodes. See [D3.js Force Layout](https://github.com/d3/d3-3.x-api-reference/blob/master/Force-Layout.md#charge) for more information.
 	- **gravity** : In automatic node position is the gravity between nodes. See [D3.js Force Layout](https://github.com/d3/d3-3.x-api-reference/blob/master/Force-Layout.md#gravity) for more information.
 	- **distance** : In automatic node position the distance between nodes in pixels. See [D3.js Force Layout](https://github.com/d3/d3-3.x-api-reference/blob/master/Force-Layout.md#chargeDistance) for more information.
@@ -894,14 +895,14 @@ In this section we describe the data structure of the Map feature of Topology Vi
 	- **y** : The vertical position of grid
 	- **width** : The width of grid
 	- **height** : The height of grid
-	- **gridSize** : Set the width and height of horitontal and vertical grid lines
+	- **gridSize** : Set the width and height of horizontal and vertical grid lines
 	- **gridSubDivisions** : Set the number of sub divisions
-- **elementsStyle** : An array with css properties for each element.
+- **elementsStyle** : An array with CSS properties for each element.
 - **elements** : An array with the list of all elements in our Map.
 
 #### Elements Style
 
-Elements style contains CSS information about each element group. It's a simple Style Sheet and it's possible to use all SVG CSS formatting rules. 
+Elements style contains CSS information about each element group. A simple Style Sheet can used and it's possible to use all SVG CSS formatting rules. 
 
 An example of this JSON can be like this :
 
@@ -918,11 +919,12 @@ Using the above code we set as background fill the color red, with 1px black str
 
 #### Elements Types
 
-This array used to draw includes all objects in our map. The are 3 basic kind of SVG objects supported :
+This array used to draw includes all objects in our map. The are some basic SVG supported objects:
 
-- Rectangles
-- Lines
--  Circles
+- Rectangle
+- Line
+- Circle
+- Text
 
 There are some common options on each element type
 
@@ -932,7 +934,7 @@ There are some common options on each element type
 - **style** : An extra style code for the specific element
 
 
-#### Rectangles
+#### Rectangle
 
 Draws an rectangle in the map
 
@@ -959,7 +961,7 @@ Draws an rectangle in the map
 - **height** : The height of the rectangle
 - **label** : A text object in the middle of circle. As with rectangles, it's possible set font style and type of all elements with the same name using this selector in elements style "elementname-label".
 
-#### Lines
+#### Line
 
 Draws a line in the map
 
@@ -984,7 +986,7 @@ Draws a line in the map
 - **x2** : The second point horizontal coordinate of line
 - **y2** : The second point vertical coordinate of line
 
-#### Circles
+#### Circle
 
 Draws a circle in the map
 
@@ -1008,3 +1010,26 @@ Draws a circle in the map
 - **cy** : The vertical coordinate of the middle of circle
 - **r** : The radius of circle
 - **label** : A text object in the middle of circle. As with circles, it's possible set font style and type of all elements with the same name using this selector in elements style "elementname-label".
+
+#### Text
+
+Draws a text in the map
+
+```json
+    "elements":[
+        {
+            "type":"text",
+            "name":"elementname",
+            "class":"",
+            "style":"",
+            "x":0,
+            "y":0,
+            "text":""
+        }
+    ]
+```
+
+- **type** : For rectangle elements "text"
+- **x** : The horizontal coordinate of middle point of the text
+- **y** : The vertical coordinate of middle point of the text
+- **text** : The content of text object
